@@ -4,7 +4,7 @@
       <div class="window__close" @click="closeForm">
         <img src="@/assets/close.png" alt="close">
       </div>
-      <SideForm class="window__form" />
+      <SideForm class="window__form" :id="2" />
     </div>
   </div>
 </template>

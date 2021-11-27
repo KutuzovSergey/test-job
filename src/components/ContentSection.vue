@@ -1,6 +1,6 @@
 <template>
 	<section class="content">
-		<SideForm class="content__form-adaptive" />
+		<SideForm class="content__form-adaptive" :id="1" />
 		<ProductsBlock />
 	</section>
 </template>

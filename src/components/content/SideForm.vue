@@ -1,5 +1,5 @@
 <template>
-	<form class="form" @submit.prevent="getData">
+	<form class="form" @submit.prevent="getData" :id='id'>
 		<div class="form__block">
 			<label for="name" class="form__description" >Наименование товара<FieldMarking class="form__marking" /></label>
 			<input 
@@ -64,6 +64,10 @@ export default {
 		FillingError,
 	},
 	props: {
+		id: {
+			type: Number,
+			required: true,
+		}
 	},
 	data(){
 		return {
@@ -78,7 +82,7 @@ export default {
 		}
 	},
 	methods:{
-		...mapActions(['SET_PRODUCT']),
+		...mapActions(['SET_PRODUCT', 'SET_MODAL_WINDOW']),
 		processingData: function (data) {
 			let id = 1;
 			let arrly_id = [];
@@ -109,11 +113,20 @@ export default {
 			this.SET_PRODUCT(received_data);
 		},
 		getData: function () {
-			const required_fields = document.querySelectorAll('input.form__field');
+			const all_form = document.querySelectorAll(`form.form`);
+			let this_form;
+
+			for (let i = 0; i < all_form.length; i++) {
+				if (all_form[i].getAttribute('id') == this.id) {
+					this_form = all_form[i];
+				}
+			}
+
+			const required_fields = this_form.querySelectorAll('input.form__field');
 			const button = document.querySelector('button.form__button');
 			let number_fields = required_fields.length;
 
-			for (var i = 0; i < required_fields.length; i++) {
+			for (let i = 0; i < required_fields.length; i++) {
 
 				if (required_fields[i].value == '') {
 					const message_error = document.querySelector(`.form__error.${required_fields[i].name}`);
@@ -128,6 +141,7 @@ export default {
 
 			if (number_fields === required_fields.length) {
 				this.processingData(this.productInfo);
+				this.id == 2 ? this.SET_MODAL_WINDOW(true) : '';
 			}
 		},
 		usualView: function (event) {
