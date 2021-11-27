@@ -1,5 +1,6 @@
   html{
     height: 100%;
+    background-color: #faf9f7;
   }
   body{
     height: 100%;
@@ -28,4 +29,10 @@
   }
   button::-moz-focus-inner {
     border: 0 !important;
+  }
+  .input-error{
+    border: 1px solid #FF8484!important;
+  }
+  .show-error{
+    display: block!important;
   }

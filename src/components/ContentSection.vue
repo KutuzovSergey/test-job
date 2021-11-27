@@ -1,6 +1,6 @@
 <template>
 	<section class="content">
-		<SideForm />
+		<SideForm class="content__form-adaptive" />
 		<ProductsBlock />
 	</section>
 </template>
@@ -17,7 +17,7 @@ export default {
 	},
 	props: {
 		msg: String
-	}
+	},
 }
 </script>
 
@@ -28,5 +28,29 @@ export default {
 		display: flex;
 		height: auto;
 		padding: 0 32px;
+	}
+	@media (max-width: 1740px){
+		.content{
+			width: 1058px;
+			padding: 0 25px;
+		}
+	}
+	@media (max-width: 1096px){
+		.content{
+			width: 803px;
+			&__form-adaptive{
+				display: none;
+			}
+		}
+	}
+	@media (max-width: 896px){
+		.content{
+			width: 536px;
+		}
+	}
+	@media (max-width: 556px){
+		.content{
+			width: 269px;
+		}
 	}
 </style>
